@@ -1,7 +1,7 @@
 import { useState } from "react";
 import api from "../Services/api";
 
-interface Pessoa {
+export interface Pessoa {
   cnpj: number|string;
   codigo: string;
   tipo: number|string;
@@ -12,6 +12,11 @@ export function usePessoaApi() {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
+  async function atualizarPessoa(id: string, dados: Pessoa) {
+      const response = await api.put(`/pessoa/${id}`, dados);
+      return response.data;
+    }
+    
   async function buscarPessoaPorId(id: number | string) {
     try {
       setLoading(true);
@@ -39,5 +44,6 @@ export function usePessoaApi() {
     loading,
     error,
     buscarPessoaPorId,
+    atualizarPessoa
   };
 }
