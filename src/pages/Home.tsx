@@ -15,7 +15,7 @@ import {
 import { usePessoaApi } from "../Hooks/UsarApiBunker";
 
 export function Home() {
-  const [id, setId] = useState<number>(0);
+  const [id, setId] = useState<string|number>(0);
 
   const { data, loading, error, buscarPessoaPorId } = usePessoaApi();
 
@@ -47,13 +47,13 @@ export function Home() {
         {data && (
           <IonList>
             <IonItem>
-              <IonLabel>ID: {data.cnpj}</IonLabel>
+              <IonLabel>CNPJ/CPF: {data.cnpj}</IonLabel>
             </IonItem>
             <IonItem>
-              <IonLabel>Nome: {data.codigo}</IonLabel>
+              <IonLabel>Código: {data.codigo}</IonLabel>
             </IonItem>
             <IonItem>
-              <IonLabel>Documento: {data.empresa}</IonLabel>
+              <IonLabel>Documento: {data.tipo}</IonLabel>
             </IonItem>
           </IonList>
         )}

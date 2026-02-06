@@ -1,7 +1,10 @@
 import axios from "axios";
 
-const api = axios.create({
-  baseURL: "https://12282389000194.bunkererp.com.br/v1",
+export const api = axios.create({
+  baseURL: "/api/v1",
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
 
 api.interceptors.request.use(request => {
@@ -10,7 +13,7 @@ api.interceptors.request.use(request => {
 });
 
 api.interceptors.response.use(response => {
-  console.log("⬅️ Response:", response);
+  console.log("✅ Response:", response);
   return response;
 });
 

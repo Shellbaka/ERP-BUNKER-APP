@@ -2,9 +2,9 @@ import { useState } from "react";
 import api from "../Services/api";
 
 interface Pessoa {
-  cnpj: number;
+  cnpj: number|string;
   codigo: string;
-  empresa: number;
+  tipo: number|string;
 }
 
 export function usePessoaApi() {
@@ -12,12 +12,12 @@ export function usePessoaApi() {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  async function buscarPessoaPorId(id: number) {
+  async function buscarPessoaPorId(id: number | string) {
     try {
       setLoading(true);
       setError(null);
 
-      const response = await api.get<Pessoa>(`/pessoas/${id}`);
+      const response = await api.get<Pessoa>(`/pessoa/${id}`);
       setData(response.data);
 
     } catch (err: unknown) {
